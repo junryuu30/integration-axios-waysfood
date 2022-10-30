@@ -20,6 +20,7 @@ import { UserContext } from "./Contexts/userContext";
 import { API, setAuthToken } from "./config/api";
 import AllNavbar from "./Components/AllNavbar";
 import DetailAllFood from "./Pages/DetailAllFood";
+import Viewmap from "./Components/ViewMap";
 
 // const PrivateRoute = () => {
 //   const [state, dispatch] = useContext(UserContext)
@@ -63,6 +64,7 @@ function App() {
 
   return (
       <CartContext.Provider value={{ dataCart, setDataCart }}>
+      {/* <CartContext.Provider value={{ cartLength, setCartLength }}> */}
         {/* <Router> */}
           {/* <Navbars isLogin={state.isLogin} user={state.user} dispatch={dispatch} /> */}
           <QueryClientProvider client={client}>
@@ -77,7 +79,7 @@ function App() {
             <Route path="/order" element={<Order />} />
             {/* <Route path="/edit-profile" element={<EditProfile />} /> */}
 
-
+            <Route path="/view-map" element={<Viewmap/>} />
             <Route path="/income-transaction" element={<HomeAdmin />} />
             <Route path="/add-product" element={<AddProduct />} />
             <Route path="/profile-user" element={<ProfileAdmin />} />
