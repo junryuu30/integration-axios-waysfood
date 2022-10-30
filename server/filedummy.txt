@@ -1,0 +1,40 @@
+nama data-base: waysfood-2
+
+for register = on raw body:
+{
+    "email":"jiji@email.com",
+    "password":"1234",
+    "fullName":"haha",
+    "gender":"female",
+    "phone":"08990",
+    "role":"user"
+}
+
+login
+{
+    "email":"haha@email.com",
+    "password":"1234"
+}
+
+update-product:
+title
+image
+price
+qty
+
+update user:
+fullName
+email
+password ::
+phone
+gender
+location
+role
+image
+
+update transaction
+{
+    "status":"by",
+    "order_id":2,
+    "qty":5 
+}

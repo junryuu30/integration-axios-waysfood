@@ -1,0 +1,29 @@
+1. fetch data by id user on dasboard:
+popular raustaraunt ==>content patner: ga tampil datanya
+
+2. fetch data on mapbox(?)
+ContentRestaurant
+
+update-profile
+=> pkg-filename,
+checkauth response diubah
+hendlers checkauth,,
+hendlers update user
+client-edit-profile
+
+
+
+undifined
+
+cart
+
+ubah warna color di form (putih itu ga keliatan)
+home harus di ternari ==> pas patner masuk tampilan awalnya history transaction
+pas users masuk dia bisa checkout
+
+nampilin transaction by user id
+
+
+
+
+
