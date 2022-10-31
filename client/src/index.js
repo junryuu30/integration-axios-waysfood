@@ -18,13 +18,13 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 //       </React.StrictMode>
 // );
 root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-    <UserContextProvider>
-      <QueryClientProvider client={client}>
-          <App />
-      </QueryClientProvider>
-    </UserContextProvider>
-    </BrowserRouter>
-  </React.StrictMode>,
+    <React.StrictMode>
+      <BrowserRouter>
+      <UserContextProvider>
+        <QueryClientProvider client={client}>
+            <App />
+        </QueryClientProvider>
+      </UserContextProvider>
+      </BrowserRouter>
+    </React.StrictMode>
 );

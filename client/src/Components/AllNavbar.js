@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Badge, Button, Container, Dropdown, Navbar} from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -16,6 +16,8 @@ import foodIcon from "../assets/food-icon.svg";
 import money from "../assets/money.png";
 
 import { UserContext } from "../Contexts/userContext";
+import { API } from "../config/api";
+import { useQuery } from "react-query";
 
 function AllNavbar() {
   const navigate = useNavigate();
@@ -23,7 +25,40 @@ function AllNavbar() {
   const [state, dispatch] = useContext(UserContext);
   console.log(state);
 
-  const { dataCart, setDataCart } = useContext(CartContext);
+  // const { dataCart, setDataCart } = useContext(CartContext);
+
+  const [user, setUser] = useState(null)
+
+  const { cartLength, setCartLength } = useContext(CartContext);
+  const getUser = async () => {
+      const response = await API.get(`/user/${state.user.id}`)
+      setUser(response.data.data)
+  }
+
+  useEffect(() => {
+
+      if (state.user) {
+          getUser()
+      }
+  }, [state])
+
+  const { data: cartData, refetch: getCartLength } = useQuery(
+      'cartCache',
+      async () => {
+          try {
+              const response = await API.get('/carts');
+              return response.data.data;
+          } catch (error) {
+              console.log(error);
+          }
+      }
+  );
+
+
+  useEffect(() => {
+      getCartLength();
+      // refetch();
+  }, [cartData]);
 
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
@@ -78,12 +113,12 @@ function AllNavbar() {
                     onClick={() => navigate("/order")}
                     alt=""
                   />
-                  {dataCart.length > 0 && (
+                  {cartData?.length > 0 && (
                     <Badge
                       style={{ width: "25px", height: "20px" }}
                       className="bg-danger position-absolute badge"
                     >
-                      {dataCart.length}
+                      {cartData?.length}
                     </Badge>
                   )}
                   <Dropdown.Toggle variant="bg-yellow" id="dropdown-basic">

@@ -16,7 +16,7 @@ const Detail = () => {
 
     const params = useParams()
     const navigate = useNavigate()
-    // const { cartLength, setCartLength } = useContext(CartContext)
+    const { cartLength, setCartLength } = useContext(CartContext)
 
 
     let { data: productbyuser } = useQuery('productsbyuserCache', async () => {
@@ -30,17 +30,17 @@ const Detail = () => {
         return response.data.data
     })
 
-    // const addToCartHandler = async (productId, productPrice) => {
-    //   try {
-    //     const response = await API.post(`/cart/add/${productId}`, {
-    //       price: productPrice,
-    //     });
-    //     const getCart = await API.get("/carts");
-    //     setCartLength(getCart.data.data.length);
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // };
+    const addToCartHandler = async (productId, productPrice) => {
+      try {
+        const response = await API.post(`/cart/add/${productId}`, {
+          price: productPrice,
+        });
+        const getCart = await API.get("/carts");
+        setCartLength(getCart.data.data.length);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
 
 
@@ -65,7 +65,7 @@ const Detail = () => {
                   //   // console.log(dataCart);
                   // }}
                   
-                  // onClick={() => addToCartHandler(item.id, item.price)}
+                  onClick={() => addToCartHandler(item.id, item.price)}
                 >
                   Order
                 </Button>

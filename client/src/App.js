@@ -33,7 +33,8 @@ function App() {
   const [state, dispatch] = useContext(UserContext)
   console.log(state);
 
-  const [dataCart, setDataCart] = useState([]);
+  const [cartLength, setCartLength] = useState(0);
+  // const [dataCart, setDataCart] = useState([]);
 
   const checkUser = async () => {
     try {
@@ -63,11 +64,8 @@ function App() {
 
 
   return (
-      <CartContext.Provider value={{ dataCart, setDataCart }}>
-      {/* <CartContext.Provider value={{ cartLength, setCartLength }}> */}
-        {/* <Router> */}
-          {/* <Navbars isLogin={state.isLogin} user={state.user} dispatch={dispatch} /> */}
-          <QueryClientProvider client={client}>
+    <CartContext.Provider value={{ cartLength, setCartLength }}>
+        <QueryClientProvider client={client}>
           <AllNavbar/>
           <Routes>
           <Route path="/" element={<Home />} />
@@ -84,9 +82,7 @@ function App() {
             <Route path="/add-product" element={<AddProduct />} />
             <Route path="/profile-user" element={<ProfileAdmin />} />
             <Route path='/edit-profile' element={<EditAdmin />} />
-          {/* </Route> */}
           </Routes>
-        {/* </Router> */}
         </QueryClientProvider>
       </CartContext.Provider>
   );
